@@ -43,3 +43,22 @@ For example, the frontend retrieves products through
 
 This makes communication more reliable when Kubernetes
 replaces or scales application Pods.
+
+
+## Independent Microservice Scaling
+
+Tested manually scaling individual Kubernetes Deployments
+without changing the other application components.
+
+| Component | Initial Replicas | Final Replicas |
+|---|---:|---:|
+| Frontend | 2 | 5 |
+| Product Service | 1 | 3 |
+| Order Service | 1 | 2 |
+| PostgreSQL | 1 | 1 |
+
+Kubernetes successfully maintained the requested replica
+counts while allowing different application components
+to scale independently.
+
+The shopping application remained accessible after scaling.
