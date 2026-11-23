@@ -12,13 +12,31 @@ products = [
 
 @app.route("/")
 def home():
-    return jsonify(
-        {
-            "service": "product-service",
-            "message": "Product API is running",
-            "endpoints": ["/products", "/products/1", "/health"],
-        }
-    )
+    return """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Product Service API</title>
+    </head>
+    <body>
+        <h1>Product Service API</h1>
+        <p>Welcome to the E-Commerce Product Microservice.</p>
+
+        <h2>Available Endpoints</h2>
+        <ul>
+            <li>
+                <a href="/products">View All Products</a>
+            </li>
+            <li>
+                <a href="/products/1">View Product 1 (Laptop)</a>
+            </li>
+            <li>
+                <a href="/health">Check Service Health</a>
+            </li>
+        </ul>
+    </body>
+    </html>
+    """
 
 
 @app.route("/products", methods=["GET"])
