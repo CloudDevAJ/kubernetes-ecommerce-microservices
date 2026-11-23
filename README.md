@@ -90,3 +90,32 @@ the desired number of application replicas.
 
 When a Pod is deleted, Kubernetes automatically creates
 a replacement without requiring manual intervention.
+
+
+## PostgreSQL Database Persistence
+
+Tested database persistence using a Kubernetes
+PersistentVolumeClaim (PVC).
+
+### Test Procedure
+
+1. Created a customer order through the frontend.
+2. Verified the order was stored in PostgreSQL.
+3. Deleted the running PostgreSQL Pod.
+4. Observed Kubernetes create a replacement Pod.
+5. Verified the new Pod became Ready.
+6. Retrieved the original customer order again.
+
+### Results
+
+- PostgreSQL Deployment recovered successfully.
+- PersistentVolumeClaim remained Bound.
+- Customer order remained available after Pod replacement.
+
+### Key Learning
+
+Kubernetes Pods are temporary, but PersistentVolumeClaims
+provide storage that can survive Pod deletion and recreation.
+
+Separating persistent data from the container lifecycle
+helps protect application data during Pod replacement.
