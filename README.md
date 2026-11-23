@@ -119,3 +119,33 @@ provide storage that can survive Pod deletion and recreation.
 
 Separating persistent data from the container lifecycle
 helps protect application data during Pod replacement.
+
+
+## Monitoring and Troubleshooting
+
+Verified the health of the Kubernetes e-commerce
+application by inspecting Pod logs, Deployments,
+Services, and persistent storage.
+
+### Commands Used
+
+```bash
+kubectl logs deployment/frontend -n ecommerce
+kubectl logs deployment/product-service -n ecommerce
+kubectl logs deployment/order-service -n ecommerce
+kubectl logs deployment/database -n ecommerce
+
+kubectl get pods -n ecommerce -o wide
+kubectl get deployments -n ecommerce
+kubectl get services -n ecommerce
+kubectl get pvc -n ecommerce
+kubectl describe deployment frontend -n ecommerce
+```
+
+### Key Learnings
+
+- Each microservice has independent application logs.
+- Kubernetes Deployments maintain the desired replica count.
+- Services provide stable internal networking.
+- PersistentVolumeClaims preserve PostgreSQL data.
+- Logs and resource descriptions help diagnose failures.
