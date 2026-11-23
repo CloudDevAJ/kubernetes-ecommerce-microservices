@@ -62,3 +62,31 @@ counts while allowing different application components
 to scale independently.
 
 The shopping application remained accessible after scaling.
+
+
+## Kubernetes Self-Healing
+
+Tested Kubernetes self-healing by manually deleting
+application Pods managed by Deployments.
+
+### Frontend Recovery
+
+- Desired replicas: 5
+- Deleted one frontend Pod
+- Kubernetes created a replacement Pod
+- Deployment returned to 5 available replicas
+
+### Product Service Recovery
+
+- Desired replicas: 3
+- Deleted one Product Service Pod
+- Kubernetes created a replacement Pod
+- Deployment returned to 3 available replicas
+
+### Key Learning
+
+Kubernetes Deployments use ReplicaSets to maintain
+the desired number of application replicas.
+
+When a Pod is deleted, Kubernetes automatically creates
+a replacement without requiring manual intervention.
