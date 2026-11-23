@@ -20,3 +20,26 @@ Python Flask, PostgreSQL, Docker, and Kubernetes.
 - Configure Kubernetes Services and internal DNS
 - Use Secrets and persistent storage
 - Test independent scaling and self-healing
+
+
+## Kubernetes Service Discovery
+
+The application uses Kubernetes Services and internal DNS
+to enable communication between microservices.
+
+| Component | Internal Service Address |
+|---|---|
+| Product Service | product-service:5001 |
+| Order Service | order-service:5002 |
+| PostgreSQL | database:5432 |
+
+All application components run in the `ecommerce` namespace.
+
+Kubernetes DNS allows services to communicate without
+depending on individual Pod IP addresses.
+
+For example, the frontend retrieves products through
+`http://product-service:5001/products`.
+
+This makes communication more reliable when Kubernetes
+replaces or scales application Pods.
